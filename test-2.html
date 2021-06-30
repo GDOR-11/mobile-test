@@ -27,19 +27,25 @@
 	try {
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
+
+	var mouse_pressed = false;
 	document.addEventListener(touchScreen ? 'touchstart' : 'mousedown', touchScreen ? function(event) {
 		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
 		write_text(event.clientX + ', ' + event.clientY);
+		mouse_pressed = true;
 	}, passive);
 	document.addEventListener(touchScreen ? 'touchend' : 'mouseup', touchScreen ? function(event) {
 		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
 		write_text('');
+		mouse_pressed = false;
 	}, passive);
 	document.addEventListener(touchScreen ? 'touchmove' : 'mousemove', touchScreen ? function(event) {
 		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
-		write_text(event.clientX + ', ' + event.clientY);
+		if(mouse_pressed) {
+			write_text(event.clientX + ', ' + event.clientY);
+		}
 	}, passive);
 </script>
