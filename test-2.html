@@ -7,16 +7,12 @@
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
 	document.addEventListener(touchScreen ? 'touchstart' : 'mousedown', touchScreen ? function(event) {
-		try {
 		var touches = [...event.targetTouches];
 		var coords = [];
 		for(var touch of touches) {
-			coors.push(touch.clientX, touch.clientY);
+			coords.push(touch.clientX, touch.clientY);
 		}
-		document.body.innerHTML = touches + '';
-		} catch(error) {
-			document.body.innerHTML = error;
-		}
+		document.body.innerHTML = coords.join('<br>');
 	} : function(event) {
 		document.body.innerHTML = event.clientX + ', ' + event.clientY;
 	}, passive);
