@@ -6,6 +6,6 @@
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
 	document.addEventListener(isMobile ? 'touchstart' : 'mousedown', function(event) {
-		alert(event.clientX, event.clientY);
+		alert(event);
 	}, passive);
 </script>
