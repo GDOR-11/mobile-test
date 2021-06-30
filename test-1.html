@@ -1,6 +1,7 @@
 <script>
   document.write('navigator.platform: ' + navigator.platform + '<br>' + 
                  'navigator.userAgent: ' + navigator.userAgent + '<br>' + 
-                 'operational system (?): ' + navigator.userAgent.slice(navigator.userAgent.match(';').index + 2, [...navigator.userAgent.matchAll(/;/g)][1].index)
+                 'operational system (?): ' + navigator.userAgent.slice(navigator.userAgent.match(';').index + 2, [...navigator.userAgent.matchAll(/;/g)][1].index) + '<br>' + 
+                 'is mobile: ' + window.matchMedia("only screen and (max-width: 760px)").matches
   );
 </script>
