@@ -10,7 +10,7 @@
 		var touches = [...event.targetTouches];
 		var coords = [];
 		for(var touch of touches) {
-			coords.push(touch.clientX, touch.clientY);
+			coords.push(touch.clientX + ', ' + touch.clientY);
 		}
 		document.body.innerHTML = coords.join('<br>');
 	} : function(event) {
