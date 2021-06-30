@@ -7,7 +7,7 @@
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
 	document.addEventListener(touchScreen ? 'touchstart' : 'mousedown', touchScreen ? function(event) {
-		document.body.innerHTML = event.targetTouches + '';
+		document.body.innerHTML = [...event.targetTouches] + '';
 	} : function(event) {
 		document.body.innerHTML = event.clientX + ', ' + event.clientY;
 	}, passive);
