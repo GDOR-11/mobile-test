@@ -1,0 +1,11 @@
+<script>
+	var isMobile = /mobi|android/i.test(navigator.userAgent);
+
+	var passive = false;
+	try {
+		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
+	} catch(error) {}
+	document.addEventListener(isMobile ? 'touchstart' : 'mousedown', function(event) {
+		alert('click');
+	}, passive);
+</script>
