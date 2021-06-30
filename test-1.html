@@ -1,6 +1,6 @@
 <script>
   document.write('navigator.platform: ' + navigator.platform + '<br>' + 
                  'navigator.userAgent: ' + navigator.userAgent + '<br>' + 
-                 'device (?): ' + navigator.userAgent.slice(navigator.userAgent.match(';').index + 2, [...navigator.userAgent.matchAll(/;/g)][1].index)
+                 'operational system (?): ' + navigator.userAgent.slice(navigator.userAgent.match(';').index + 2, [...navigator.userAgent.matchAll(/;/g)][1].index)
   );
 </script>
