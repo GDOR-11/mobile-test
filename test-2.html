@@ -1,4 +1,12 @@
 <script>
+	function detect_touches_from_touchevent(event) {
+		var touches = [...event.targetTouches];
+		var coords = [];
+		for(var touch of touches) {
+			coords.push(touch.clientX + ', ' + touch.clientY);
+		}
+		return coords;
+	}
 	var isMobile = /mobi|android/i.test(navigator.userAgent);
 	var touchScreen = 'ontouchstart' in document;
 
@@ -7,13 +15,13 @@
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
 	document.addEventListener(touchScreen ? 'touchstart' : 'mousedown', touchScreen ? function(event) {
-		var touches = [...event.targetTouches];
-		var coords = [];
-		for(var touch of touches) {
-			coords.push(touch.clientX + ', ' + touch.clientY);
-		}
-		document.body.innerHTML = coords.join('<br>');
+		document.body.innerHTML = detect_touches_from_touchevent(event).join('<br>');
 	} : function(event) {
 		document.body.innerHTML = event.clientX + ', ' + event.clientY;
+	}, passive);
+	document.addEventListener(touchScreen ? 'touchend' : 'mouseup', touchScreen ? function(event) {
+		document.body.innerHTML = detect_touches_from_touchevent(event).join('<br>');
+	} : function(event) {
+		document.body.innerHTML = '';
 	}, passive);
 </script>
