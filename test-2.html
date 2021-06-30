@@ -12,7 +12,7 @@
 		for(var touch of touches) {
 			coors.push(touch.clientX, touch.clientY);
 		}
-		document.body.innerHTML = coords.join('<br>');
+		document.body.innerHTML = coords + '';
 	} : function(event) {
 		document.body.innerHTML = event.clientX + ', ' + event.clientY;
 	}, passive);
