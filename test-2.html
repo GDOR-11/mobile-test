@@ -1,3 +1,12 @@
+<style>
+	* {
+		-moz-user-select: -moz-none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+</style>
 <div id = 'coords'></div>
 <script>
 	function detect_touches_from_touchevent(event) {
@@ -19,18 +28,18 @@
 		window.addEventListener('event-listener', null, Object.defineProperty({}, 'passive', {get: () => passive = {passive: true}}));
 	} catch(error) {}
 	document.addEventListener(touchScreen ? 'touchstart' : 'mousedown', touchScreen ? function(event) {
-		document.body.innerHTML = detect_touches_from_touchevent(event).join('<br>');
+		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
-		document.body.innerHTML = event.clientX + ', ' + event.clientY;
+		write_text(event.clientX + ', ' + event.clientY);
 	}, passive);
 	document.addEventListener(touchScreen ? 'touchend' : 'mouseup', touchScreen ? function(event) {
-		document.body.innerHTML = detect_touches_from_touchevent(event).join('<br>');
+		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
-		document.body.innerHTML = '';
+		write_text('');
 	}, passive);
 	document.addEventListener(touchScreen ? 'touchmove' : 'mousemove', touchScreen ? function(event) {
-		document.body.innerHTML = detect_touches_from_touchevent(event).join('<br>');
+		write_text(detect_touches_from_touchevent(event).join('<br>'));
 	} : function(event) {
-		document.body.innerHTML = '';
+		write_text(event.clientX + ', ' + event.clientY);
 	}, passive);
 </script>
